@@ -8,16 +8,8 @@ $('body').on('click', '.show-filter', function (e) {
   $('.sidebar').toggleClass('active');
   $('html, body').toggleClass('overflow');
 });
-$('body').on('click', '.show-search', function (e) {
-  $('.mobile-search').toggleClass('active');
-  $('html, body').toggleClass('overflow');
-});
 $('body').on('click', '.sidebar__close', function (e) {
   $('.sidebar').toggleClass('active');
-  $('html, body').toggleClass('overflow');
-});
-$('body').on('click', '.mobile-search .close', function (e) {
-  $('.mobile-search').toggleClass('active');
   $('html, body').toggleClass('overflow');
 });
 $('body').on('click', '.heart', function (e) {
@@ -74,3 +66,48 @@ $(document).keyup(function (e) {
 $('body').on('submit', 'form', function (e) {
   e.preventDefault();
 });
+
+if ($(window).width() >= 1024 && $('.sticky').length > 0) {
+  var sticky = new Sticky('.sticky', {
+    marginTop: 20
+  });
+}
+
+var sameHeight = function sameHeight(item, element, count) {
+  var titleHeight = 0;
+  var items = [];
+
+  for (var i = 1; i < $(item).length + 1; i++) {
+    var $step = $(item).eq(i - 1);
+
+    if (i !== 0 && i % count === 0) {
+      if ($step.find(element).height() > titleHeight) {
+        titleHeight = $step.find(element).height();
+      }
+
+      items.push(i - 1);
+
+      for (var j = 0; j < items.length; j++) {
+        $(item).eq(items[j]).find(element).height(titleHeight);
+      }
+
+      items = [];
+      titleHeight = 0;
+    } else {
+      items.push(i - 1);
+
+      if ($step.find(element).height() > titleHeight) {
+        titleHeight = $step.find(element).height();
+      }
+
+      for (var _j = 0; _j < items.length; _j++) {
+        $(item).eq(items[_j]).find(element).height(titleHeight);
+      }
+    }
+  }
+};
+
+$(window).on('resize', function () {
+  sameHeight('.grid .item', '.item__title', 2);
+});
+sameHeight('.grid .item', '.item__title', 2);

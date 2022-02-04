@@ -8,18 +8,8 @@ $('body').on('click', '.show-filter', (e) => {
     $('html, body').toggleClass('overflow');
 });
 
-$('body').on('click', '.show-search', (e) => {
-    $('.mobile-search').toggleClass('active');
-    $('html, body').toggleClass('overflow');
-});
-
 $('body').on('click', '.sidebar__close', (e) => {
     $('.sidebar').toggleClass('active');
-    $('html, body').toggleClass('overflow');
-});
-
-$('body').on('click', '.mobile-search .close', (e) => {
-    $('.mobile-search').toggleClass('active');
     $('html, body').toggleClass('overflow');
 });
 
@@ -87,3 +77,49 @@ $(document).keyup((e) => {
 $('body').on('submit', 'form', (e) => {
     e.preventDefault();
 });
+
+if ($(window).width() >= 1024 && $('.sticky').length > 0) {
+    let sticky = new Sticky('.sticky', {
+        marginTop: 20,
+    });
+}
+
+let sameHeight = (item, element, count) => {
+    let titleHeight = 0;
+    let items = [];
+
+    for (let i = 1; i < $(item).length + 1; i++) {
+        let $step = $(item).eq(i - 1);
+
+        if (i !== 0 && i % count === 0) {
+            if ($step.find(element).height() > titleHeight) {
+                titleHeight = $step.find(element).height();
+            }
+
+            items.push(i - 1);
+
+            for (let j = 0; j < items.length; j++) {
+                $(item).eq(items[j]).find(element).height(titleHeight);
+            }
+
+            items = [];
+            titleHeight = 0;
+        } else {
+            items.push(i - 1);
+
+            if ($step.find(element).height() > titleHeight) {
+                titleHeight = $step.find(element).height();
+            }
+
+            for (let j = 0; j < items.length; j++) {
+                $(item).eq(items[j]).find(element).height(titleHeight);
+            }
+        }
+    }
+};
+
+$(window).on('resize', () => {
+    sameHeight('.grid .item', '.item__title', 2);
+});
+
+sameHeight('.grid .item', '.item__title', 2);

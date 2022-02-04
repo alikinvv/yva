@@ -271,8 +271,8 @@ ol {
 }
 
 .container {
-    @include r(1210) {
-        padding: 0 20px;
+    @include r(1200) {
+        padding: 0 15px;
     }
 
     margin: 0 auto;
@@ -375,6 +375,7 @@ ol {
         line-height: 1.45;
         border-left: 1px solid $blue;
         margin-bottom: 35px;
+        overflow-wrap: break-word;
     }
 
     &__img {
@@ -399,8 +400,8 @@ ol {
 
 .content {
     &.mt {
-        @include r(1023) {
-            margin-top: 0;
+        @include r(767) {
+            margin-top: -52px;
         }
 
         margin-top: -42px;
@@ -429,11 +430,24 @@ ol {
 
     &__main {
         width: 100%;
+
+        .search {
+            @include r(1023) {
+                display: flex;
+            }
+
+            @include r(767) {
+                margin-top: 40px;
+                margin-bottom: 10px;
+            }
+
+            display: none;
+        }
     }
 
     &__top {
-        @include r(1023) {
-            display: none;
+        @include r(767) {
+            font-size: 14px;
         }
 
         @include fcn;
@@ -442,12 +456,22 @@ ol {
         margin-bottom: 50px;
 
         span {
+            @include r(767) {
+                padding: 8px 15px 12px;
+                text-align: center;
+            }
+
             font-weight: 600;
             padding: 8px 24px;
             background: #f3f5fa;
         }
 
         span + a {
+            @include r(767) {
+                padding: 8px 15px;
+                text-align: center;
+            }
+
             margin-left: 27px;
             display: inline-block;
         }
@@ -473,6 +497,7 @@ ol {
 
         font-size: 18px;
         margin-bottom: 34px;
+        overflow-wrap: break-word;
 
         a {
             color: $blue;
@@ -885,6 +910,10 @@ ol {
     }
 
     &__title {
+        @include r(767) {
+            height: auto !important;
+        }
+
         color: #001a4d;
         font-size: 18px;
         line-height: 1.39;
@@ -941,7 +970,15 @@ ol {
     }
 
     @include flexlist(9px);
-    margin-bottom: 34px;
+    margin-bottom: 25px;
+
+    & + ol,
+    & + ul,
+    & + p,
+    & + h1,
+    & + h2 {
+        margin-top: 40px;
+    }
 
     &:last-child {
         margin-bottom: 0;
@@ -1058,6 +1095,7 @@ ol {
 
 .text {
     padding-bottom: 60px;
+    margin-top: 40px;
 
     h2,
     h3,
@@ -1162,7 +1200,7 @@ ol {
     }
 
     &__item {
-        width: 49%;
+        width: 100%;
         background: #f3f5fa;
         @include fcc;
         padding: 12px 0;
@@ -1290,7 +1328,11 @@ ol {
 
 .top {
     @include r(1023) {
-        display: none;
+        padding: 20px 0 60px;
+
+        img {
+            width: 300px;
+        }
     }
 
     background: url(../img/circles.png) no-repeat 100% 25% $blue;
@@ -1328,66 +1370,6 @@ ol {
     }
 }
 
-.mobile-search {
-    @include r(767) {
-        width: 100%;
-    }
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    bottom: 0;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    background: #fff;
-    margin-right: 0;
-    box-shadow: 5px 0px 15px -6px rgba(#000, 0.3);
-    transform: translateX(-110%);
-    transition: $trans;
-    pointer-events: none;
-    user-select: none;
-    width: 338px;
-    padding: 24px 21px;
-    flex-shrink: 0;
-
-    &.active {
-        transform: translateX(0%);
-        pointer-events: all;
-        user-select: initial;
-    }
-
-    .close {
-        @include r(1023) {
-            display: block;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #f4f4f4;
-            @include fcc;
-        }
-
-        display: none;
-    }
-
-    .title {
-        font-size: 22px;
-        font-weight: 600;
-        line-height: 1.2;
-        color: #001a4d;
-        margin-bottom: 26px;
-    }
-
-    input {
-        border: 0;
-        border-bottom: 1px solid $blue;
-        font-size: 20px;
-    }
-}
-
 .video {
     @include r(1279) {
         height: 370px;
@@ -1406,17 +1388,11 @@ ol {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    position: relative;
 
-    &:hover img {
-        transform: scale(1.1);
-    }
-
-    img {
-        @include r(767) {
-            width: 50px;
-        }
-
-        transition: $trans;
+    iframe {
+        width: 100%;
+        height: 100%;
     }
 
     &__controls {
@@ -1500,12 +1476,6 @@ ol {
 }
 
 .articles {
-    padding: 70px 0;
-
-    h2 {
-        margin-bottom: 27px;
-    }
-
     &__list {
         @include r(1279) {
             @include flexlist(5px);
@@ -1519,28 +1489,23 @@ ol {
 
         @include flexlist(15px);
         margin-bottom: 36px;
+
+        & + .btn {
+            margin-bottom: 100px;
+        }
     }
 
     &__item {
-        @include r(1279) {
-            @include flexitem(33.33%, 5px);
-        }
-
-        @include r(1023) {
-            @include flexitem(50%, 5px);
-
-            &:last-child {
-                display: none;
-            }
-        }
-
         @include r(767) {
             @include flexitem(100%, 1px, 20px);
+            display: block;
         }
 
-        @include flexitem(33.33%, 15px);
+        @include flexitem(50%, 15px);
         border: 1px solid #d9dde4;
         position: relative;
+        display: flex;
+        flex-direction: column;
 
         &:hover {
             .articles__title {
@@ -1585,7 +1550,20 @@ ol {
     }
 
     &__body {
+        @include r(767) {
+            display: block;
+            height: auto;
+        }
+
         padding: 25px 27px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+
+        .btn {
+            margin-top: auto;
+        }
     }
 
     &__categories {
@@ -1623,6 +1601,7 @@ ol {
 
     &__bottom {
         @include fcn;
+        margin-top: auto;
 
         div {
             @include r(1279) {
@@ -1818,14 +1797,33 @@ ol {
 }
 
 .form {
+    @include r(767) {
+        display: block;
+    }
+
+    @include fcn;
     margin-bottom: 35px;
 
     input {
+        @include r(767) {
+            padding: 20px 20px;
+        }
+
         color: #565659;
         font-size: 18px;
         background: #f7f7f7;
         padding: 10px 20px;
         border: 0;
+    }
+
+    button {
+        @include r(767) {
+            width: 100% !important;
+            justify-content: center !important;
+        }
+
+        flex-shrink: 0;
+        border-radius: 0 !important;
     }
 }
 

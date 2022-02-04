@@ -53,7 +53,7 @@
                 <a href="javascript:void(0)" class="btn btn-red">Оформить подписку</a>
             </div>
 
-            <div class="sidebar__item">
+            <div class="sidebar__item sticky" data-sticky-container>
                 <div class="sidebar__border">Активный заголовок <br>
                     Активный заголовок </div>
                 <div class="sidebar__text">Длинный текст заголовка <br>
@@ -78,11 +78,18 @@
                 <a href="javascript:void(0)">Пункт</a>
             </div>
 
+            <form action="" class="search">
+                <button>
+                    <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M2.79109 1.49043C5.9317 -0.920545 10.4364 -0.349524 12.8474 2.79109C15.1632 5.74136 14.7508 9.92884 12.0543 12.435L17.1935 19.0652C17.3204 19.2238 17.2887 19.4459 17.13 19.5727L16.6859 19.9217C16.5273 20.0486 16.3052 20.0169 16.1783 19.8583L11.0392 13.2281C7.962 15.2266 3.80624 14.5287 1.49043 11.5785C-0.920545 8.43785 -0.349524 3.93313 2.79109 1.49043ZM3.42555 2.31524C6.09032 0.253219 9.96057 0.760793 12.0226 3.42555C14.1163 6.12204 13.6088 9.96057 10.944 12.0226C8.24751 14.1163 4.40898 13.6088 2.31524 10.944C0.253219 8.24751 0.760793 4.40898 3.42555 2.31524Z"
+                            fill="#2B2C2E" />
+                    </svg>
+                </button>
+                <input type="text" placeholder="Поиск">
+            </form>
+
             <div class="panel">
-                <div class="panel__item show-search">
-                    <img src="img/search2.svg" alt="">
-                    Поиск
-                </div>
                 <div class="panel__item show-filter">
                     <img src="img/filter.svg" alt="">
                     Фильтр
@@ -110,7 +117,7 @@
                     <img src="img/grid.png" alt="">
                     <div class="item__body">
                         <div class="item__title">Онбординг на удалёнке: <br>
-                            как делать? Советы HR-ам <br>
+                            как делать? Советы HR-ам <br>как делать? Советы HR-ам <br>
                             Строчка 3</div>
                         <div class="btn">Смотреть видео</div>
                     </div>
@@ -246,13 +253,6 @@
     </div>
 </section>
 
-<div class="mobile-search">
-    <div class="close"><img src="img/close.svg" alt=""></div>
-    <div class="title">Поиск</div>
-    <input type="text" placeholder="Поиск">
-</div>
-
-
 <!-- END CONTENT  -->
 <div class="backdrop">
     <div class="modal" data-modal="registration">
@@ -273,6 +273,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+<script src="js/sticky.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 
